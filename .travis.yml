@@ -20,3 +20,15 @@ after_success:
   - docker push shbaek/multi-nginx 
   - docker push shbaek/multi-server
   - docker push shbaek/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-northeast-2-954155194025
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
